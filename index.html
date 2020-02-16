@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+    <title>My Second Project</title>
+</head>
+
+<body class="parallax">
+
+    <h1 id="title" class="display-1 font-weight-bold text-center text-secondery">Crypto</h1>
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a id="home" class="navbar-brand" href="#">Home</a>
+        <button id="navBarToggler" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a id="liveReports" class="nav-link" href="#">Live Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a id="about" class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search coin code here"
+                    aria-label="Search">
+                <button id="searchBtn" class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div id="container" class="row"></div>
+
+    <div id="modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal-header" class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span id="closeModalIcon" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-body"></p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnModalSaveChanges" type="button" class="btn btn-info">Save changes</button>
+                    <button id="btnModalClose" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="liveReports.js"></script>
+    <script src="home.js"></script>
+    <script src="about.js"></script>
+
+</body>
+
+</html>
