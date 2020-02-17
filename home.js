@@ -4,7 +4,7 @@
 
         const dataArray = getDataFromSessionStorage();
         const chosenSwitch = {};
-        let graphData = [];
+        let graphData = {};
         let isInGraphView = false;
         let candidate;
 
@@ -44,10 +44,9 @@
 
 
         let counter = 0;
-        const id = setInterval(setGraphData, 2000)
+        let id = setInterval(setGraphData, 2000)
 
         function setGraphData() {
-            const date = new Date();
             if (Object.keys(chosenSwitch).length <= 0 || !isInGraphView) return;
             const relevantSymbols = Object.values(chosenSwitch).map(({ symbol, }) => symbol);
             const url = buildPath(...relevantSymbols);
@@ -56,8 +55,14 @@
                 url,
                 contentType: 'application/json',
                 success: function (data) {
-                    graphData.push({ date: new Date(), data})
-                    
+
+                    Object.entries(data).forEach(([k, v]) => {
+                        if(!graphData[k]) {
+                            graphData[k] = [{ x: new Date(), y: v['USD']}]
+                        } else {
+                            graphData[k].push({ x: new Date(), y: v['USD']})
+                        }
+                    })
                 },
                 error: function () {
                     console.log("Error! cannot GET data from server.");
@@ -272,6 +277,8 @@
         $("#liveReports").click(function () {
             isInGraphView = true;
             cleareDynamicArea();
+            graphData = {}
+            id = setInterval(setGraphData, 2000)
             
         });
 

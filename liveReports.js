@@ -1,6 +1,18 @@
 function showGraph(data) {
-	const titles = Object.keys(data);
-	console.log(data)
+	
+	const graphData = Object.entries(data).map( ([k, v]) => ({
+			type: "spline",
+			name: "Units Sold",
+			showInLegend: true,
+			xValueFormatString: "MMM YYYY",
+			yValueFormatString: "#,##0 Units",
+			dataPoints: v
+		}))
+
+
+	const titles = Object.keys(data)
+	// console.log(dates)
+	// console.log(data)
 	let options = {
 		// exportEnabled: true,
 		animationEnabled: true,
@@ -36,24 +48,7 @@ function showGraph(data) {
 			cursor: "pointer",
 			itemclick: toggleDataSeries
 		},
-		data: [{
-			type: "spline",
-			name: "Units Sold",
-			showInLegend: true,
-			xValueFormatString: "MMM YYYY",
-			yValueFormatString: "#,##0 Units",
-			dataPoints: [
-				{ x: new Date(), y: data.USD },
-			]
-		},
-		{
-			type: "spline",
-			name: "Profit",
-			axisYType: "secondary",
-			showInLegend: true,
-			xValueFormatString: "MMM YYYY",
-			yValueFormatString: "$#,##0.#",
-		}]
+		data: graphData
 	};
 	const graphDiv = $("<div>");
 	graphDiv.css("position", "relative");
